@@ -130,7 +130,7 @@
             </div>
         @endif
 
-        <form action="{{ route('login.authenticate') }}" method="POST">
+        <form method="POST">
             @csrf
             <div class="form-group">
                 <label for="email">Email</label>
@@ -151,7 +151,7 @@
             <button type="submit" class="btn-login">Login</button>
 
             <div class="register-link">
-                Belum punya akun? <a href="{{ route('register') }}">Daftar disini</a>
+                Belum punya akun? <a href="{{ url('/register') }}">Daftar disini</a>
             </div>
         </form>
     </div>

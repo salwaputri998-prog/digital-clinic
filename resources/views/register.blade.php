@@ -128,7 +128,7 @@
             </div>
         @endif
 
-        <form action="{{ route('register.store') }}" method="POST">
+        <form method="POST">
             @csrf
             <div class="form-group">
                 <label for="name">Nama Lengkap</label>
@@ -156,7 +156,7 @@
             <button type="submit" class="btn-register">Register</button>
 
             <div class="login-link">
-                Sudah punya akun? <a href="{{ route('login') }}">Login disini</a>
+                Sudah punya akun? <a href="{{ url('/login') }}">Login disini</a>
             </div>
         </form>
     </div>
