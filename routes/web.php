@@ -1,44 +1,39 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ListDokterController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ListObatController;
+use App\Http\Controllers\ListPasienController;
+use App\Http\Controllers\ListDokterController;
+use App\Http\Controllers\ListResepController;
+use App\Http\Controllers\ListKunjunganController;
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/contact', [HomeController::class, 'contact']);
+// Orang 1: Login & Registrasi
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/welcome', function () {
-    return view('welcome');
-});
+// Orang 2: Dashboard
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard/admin', [DashboardController::class, 'admin']);
+Route::get('/dashboard/dokter', [DashboardController::class, 'dokter']);
+Route::get('/dashboard/pasien', [DashboardController::class, 'pasien']);
 
-Route::get('/user/{id}', function ($id) {
-    return 'User dengan ID ' . $id;
-});
+// Orang 3: List Item (Master Data) - dengan 2 parameter
+Route::get('/list-obat', [ListObatController::class, 'index']);
+Route::get('/list-obat/{id}/{nama}', [ListObatController::class, 'show']);
 
-Route::prefix('admin')->group(function () {
-    Route::get('/dashboard', function () {
-        return 'Admin Dashboard';
-    });
-    Route::get('/users', function () {
-        return 'Admin Users';
-    });
-});
+Route::get('/list-pasien', [ListPasienController::class, 'index']);
+Route::get('/list-pasien/{id}/{nama}', [ListPasienController::class, 'show']);
 
-Route::get('/listbarang/{id}/{nama}', function($id, $nama){
-    return view('list_barang', compact('id', 'nama'));
-});
+Route::get('/list-dokter', [ListDokterController::class, 'index']);
+Route::get('/list-dokter/{id}/{nama}', [ListDokterController::class, 'show']);
 
-// Dashboard routes with controller
-Route::get('/dashboard', [DashboardController::class, 'index']);
-Route::get('/dashboard_admin/{id}/{nama}', [DashboardController::class, 'admin']);
-Route::get('/dashboard_dokter/{id}/{nama}', [DashboardController::class, 'dokter']);
-Route::get('/dashboard_pasien/{id}/{nama}', [DashboardController::class, 'pasien']);
+Route::get('/list-resep', [ListResepController::class, 'index']);
+Route::get('/list-resep/{id}', [ListResepController::class, 'show']);
 
-// HAPUS atau KOMEN route listdokter yang lama ini
-// Route::get('/listdokter/{id}/{nama}', function($id, $nama){
-//     return view('list_dokter', compact('id', 'nama'));
-// });
-
-// PAKAI YANG INI (hanya satu)
-Route::get('/listdokter/{id}/{nama}', [ListDokterController::class, 'tampilkan']);
+Route::get('/list-kunjungan', [ListKunjunganController::class, 'index']);
+Route::get('/list-kunjungan/{id}', [ListKunjunganController::class, 'show']);
