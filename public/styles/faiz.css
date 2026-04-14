@@ -1,0 +1,22 @@
+body {
+    background-color: #fff3e0;
+    font-family: Verdana;
+    text-align: center;
+}
+
+h1 {
+    color: #e65100;
+}
+
+a {
+    text-decoration: none;
+    margin: 8px;
+    color: #bf360c;
+    font-weight: bold;
+}
+
+img {
+    margin: 15px;
+    border-radius: 20px;
+    border: 2px solid #ff9800;
+}
