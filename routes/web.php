@@ -2,10 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::view('/home', 'home');
-Route::view('/about', 'about');
-Route::view('/service', 'service');
-Route::view('/contact', 'contact');
-Route::view('/login', 'login');
-Route::view('/register', 'register');
-Route::view('/dashboard', 'dashboard');
+Route::prefix('pages')->group(function () {
+    Route::view('/home', 'pages.home');
+    Route::view('/about', 'pages.about');
+    Route::view('/service', 'pages.service');
+    Route::view('/contact', 'pages.contact');
+    Route::view('/login', 'pages.login');
+    Route::view('/register', 'pages.register');
+    Route::view('/dashboard', 'pages.dashboard');
+});
